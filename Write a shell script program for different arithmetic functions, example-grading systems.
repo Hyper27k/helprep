@@ -1,0 +1,53 @@
+#!/bin/bash
+
+echo "Arithmetic Functions and Grading System"
+echo "----------------------------------------"
+
+# Input marks for 5 subjects
+read -p "Enter marks for Subject 1: " m1
+read -p "Enter marks for Subject 2: " m2
+read -p "Enter marks for Subject 3: " m3
+read -p "Enter marks for Subject 4: " m4
+read -p "Enter marks for Subject 5: " m5
+
+# Calculate total marks
+total=$((m1 + m2 + m3 + m4 + m5))
+echo "Total Marks: $total"
+
+# Calculate average marks
+average=$((total / 5))
+echo "Average Marks: $average"
+
+# Determine grade based on average
+if ((average >= 90)); then
+    grade="A"
+elif ((average >= 80)); then
+    grade="B"
+elif ((average >= 70)); then
+    grade="C"
+elif ((average >= 60)); then
+    grade="D"
+else
+    grade="F"
+fi
+echo "Grade: $grade"
+
+# Find the highest and lowest marks
+highest=$m1
+lowest=$m1
+
+for mark in $m2 $m3 $m4 $m5; do
+    if ((mark > highest)); then
+        highest=$mark
+    fi
+    if ((mark < lowest)); then
+        lowest=$mark
+    fi
+done
+echo "Highest Marks: $highest"
+echo "Lowest Marks: $lowest"
+
+# Calculate percentage
+read -p "Enter total maximum marks for all subjects: " max_marks
+percentage=$(echo "scale=2; ($total / $max_marks) * 100" | bc)
+echo "Percentage: $percentage%"
