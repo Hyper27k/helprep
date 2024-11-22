@@ -1,0 +1,43 @@
+#!/bin/bash
+
+echo "String Handling Functions in Shell Script"
+echo "-----------------------------------------"
+
+# Input string
+read -p "Enter a string: " str
+
+# Find the length of the string
+length=${#str}
+echo "Length of the string: $length"
+
+# Extract a substring
+read -p "Enter the starting position for substring (0-based index): " start
+read -p "Enter the length of substring: " len
+substring=${str:start:len}
+echo "Substring: $substring"
+
+# Convert to uppercase
+uppercase=${str^^}
+echo "Uppercase: $uppercase"
+
+# Convert to lowercase
+lowercase=${str,,}
+echo "Lowercase: $lowercase"
+
+# Reverse the string
+reverse=$(echo "$str" | rev)
+echo "Reversed string: $reverse"
+
+# Replace part of the string
+read -p "Enter the part of the string to replace: " search
+read -p "Enter the replacement string: " replace
+modified=${str//$search/$replace}
+echo "String after replacement: $modified"
+
+# Check if string contains another string
+read -p "Enter the substring to search: " substring
+if [[ "$str" == *"$substring"* ]]; then
+    echo "The string contains '$substring'."
+else
+    echo "The string does not contain '$substring'."
+fi
